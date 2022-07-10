@@ -14,3 +14,16 @@ postMerge :
         command:
             - "go get -d ./..."
             - "go mod vendor"
+preMerge :
+  submodules:
+    - name: package-1
+      path : "./"
+      pattern:
+        # glob-patterns to discover tests to run in case of postMerge
+        - ""
+      framework : golang
+      preRun: 
+        runEveryTime: false # if set to true it will run on test execution as well
+        command:
+            - "go get -d ./..."
+            - "go mod vendor"
